@@ -10,7 +10,6 @@ app.config['SECRET_KEY'] = 'amigos para sempre'
 @app.route('/')
 def index():
     # apresenta uma mensagem de boas vindas
-    flash("Seja bem vindo ao web site")
     return render_template('index.html')
 
 
