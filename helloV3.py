@@ -9,6 +9,11 @@ Bootstrap(app)
 def index():
     return render_template('index.html')
 
+
+@app.route('/user/<name>')
+def user(name):
+    return render_template('user.html', name=name)
+
 # retornara uma pagina de erro caso de erro 404
 @app.errorhandler(404)
 def error(e):
@@ -16,4 +21,4 @@ def error(e):
 
 @app.errorhandler(500)
 def error500(e):
-    return render_template('505.html'), 500
+    return render_template('500.html'), 500
