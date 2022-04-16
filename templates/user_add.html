@@ -1,0 +1,73 @@
+<DOCTYPE html>
+
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for message in get_flashed_messages() %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	<strong>{{ message }}
+	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+
+{% endfor %}
+
+{% if name %}
+	<h1>usuarios adicionados </h1>
+		<table class="table table-hover table-bordered table-striped">
+		{% for our_user in our_users %}
+		<tr>
+			<td>{{our_user.id}} {{our_user.name}} {{our_user.email}}</td> <br/>
+		</tr>
+
+		{% endfor %}
+	</table>
+	<br/>
+	<!-- imagem personalizada a ser exibida na pagina, para ativar retirar do comentário -->
+	<!-- <img src="{{ url_for('static', filename='images/foto.jpg') }}"> -->
+
+	<br/><br/>
+
+<!-- código javascript para ser executado na pagina, para ativar retirar comentário -->
+<!-- <p id="demo"> this is stuf...</p> -->
+<!-- <script src="{{ url_for('static', filename='javascript/myfile.js')}}"></script> -->
+
+
+{% else %}
+	<h1>Adicionar usuario</h1>
+	<br/>
+	<div class="shadow-sm p-3 mb-5 bg-body rounded">
+	<form method="POST">
+		{{ form.hidden_tag() }}
+
+		{{ form.name.label(
+		class="form-label") }}
+
+		{{ form.name(
+		class="form-control") }}
+		<br/>
+
+		{{ form.email.label(
+		class="form-label")}}
+
+		{{ form.email(
+		class="form-control") }}
+		
+		{{ form.submit(
+		class="btn btn-dark") }}
+	</form>
+	</div>
+
+	<br/><br/>
+	<table class="table table-hover table-bordered table-striped">
+		{% for our_user in our_users %}
+		<tr>
+			<td>{{our_user.id}} {{our_user.name}} {{our_user.email}}</td> <br/>
+		</tr>
+
+		{% endfor %}
+	</table>
+{% endif %}
+{% endblock %}
+
